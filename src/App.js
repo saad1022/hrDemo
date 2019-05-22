@@ -12,6 +12,7 @@ import LoginForm from "./components/LoginForm";
 import EmployeeList from "./components/EmployeeList";
 import EmployeeCreate from "./components/EmployeeCreate";
 
+import Routes from "./Router";
 class App extends Component {
 
     componentWillMount(){
@@ -33,27 +34,8 @@ class App extends Component {
         
         return(
             <Provider store={store}>
-                <Router>
-                    <Scene key = "root" hideNavBar>
-                        <Scene key = "login" component = {LoginForm} title = "Please Login" initial />
+                <Routes />
                     
-                        <Scene key = "main" >
-                            <Scene
-                                key = "employeeList"
-                                component = {EmployeeList} 
-                                title = "Employees" 
-                                rightTitle = "Add"
-                                onRight = {() => { Actions.employeeCreate();}}   
-                            />
-                            <Scene
-                                key = "employeeCreate"
-                                component = {EmployeeCreate} 
-                                title = "Add Employee"  
-                            />
-                        </Scene>
-                    </Scene>
-
-                 </Router>
                 {/* <View>
                     <LoginForm />
                 </View> */}

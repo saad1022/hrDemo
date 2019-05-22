@@ -2,16 +2,17 @@ import React, {Component} from "react";
 import {Card , CardSection, Input, CustomButton} from "./common";
 
 import {connect} from "react-redux";
-import { emailChanged } from "../actions/";
-import { passwordChanged } from "../actions";
+import { emailChanged , passwordChanged , loginUser } from "../actions/";
+//import console = require("console");
+//import { passwordChanged } from "../actions";
 
 
-const mapStateToProps = state => {
-    return {
-        email: state.auth.email,
-        password: state.auth.password
-    };
-};
+// const mapStateToProps = state => {
+//     return {
+//         email: state.auth.email,
+//         password: state.auth.password
+//     };
+// };
   
 
 
@@ -25,6 +26,11 @@ class LoginForm extends Component {
     // Event Handler for password text Changed
     onPasswordChange(text){
         this.props.passwordChanged(text);
+    }
+
+    onLoginUser(email,password){
+        console.log("Email : "+email+" "+"Password : "+password)
+        this.props.loginUser(email,password);
     }
 
     render(){
@@ -60,4 +66,11 @@ class LoginForm extends Component {
     }
 }
 
-export default connect(mapStateToProps,emailChanged,passwordChanged)(LoginForm);
+const mapStateToProps = state => {
+    return {
+        email: state.auth.email,
+        password: state.auth.password
+    };
+};
+
+export default connect(mapStateToProps,emailChanged,passwordChanged,loginUser)(LoginForm);
